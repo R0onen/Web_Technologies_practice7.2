@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BMI Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            padding: 20px;
+        }
+        .container {
+            max-width: 400px;
+            margin: auto;
+            background-color: #fff;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+        }
+        input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #5cb85c;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #4cae4c;
+        }
+        .result {
+            margin-top: 20px;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>BMI Calculator</h1>
+    <label for="weight">Enter your weight (kg):</label>
+    <input type="number" id="weight" placeholder="Weight in kg" step="0.1">
+    
+    <label for="height">Enter your height (m):</label>
+    <input type="number" id="height" placeholder="Height in meters" step="0.01">
+    
+    <button onclick="displayBMI()">Calculate BMI</button>
+    
+    <div class="result" id="bmiResult"></div>
+</div>
+
+<script>
+    function calculateBMI(weight, height) {
+        // Calculate BMI
+        let bmi = weight / (height * height);
+
+        // Determine the category and return the appropriate message
+        if (bmi < 18.5) {
+            return `Your BMI is ${bmi.toFixed(2)}, so you are underweight.`;
+        } else if (bmi >= 18.5 && bmi <= 24.9) {
+            return `Your BMI is ${bmi.toFixed(2)}, so you have a normal weight.`;
+        } else {
+            return `Your BMI is ${bmi.toFixed(2)}, so you are overweight.`;
+        }
+    }
+
+    function displayBMI() {
+        // Get the values from the input fields
+        let weight = parseFloat(document.getElementById("weight").value);
+        let height = parseFloat(document.getElementById("height").value);
+
+        // Validate inputs
+        if (isNaN(weight) || isNaN(height) || weight <= 0 || height <= 0) {
+            document.getElementById("bmiResult").innerHTML = "Please enter valid values for weight and height.";
+            return;
+        }
+
+        // Call the calculateBMI function and display the result
+        let result = calculateBMI(weight, height);
+        document.getElementById("bmiResult").innerHTML = result;
+    }
+</script>
+
+</body>
+</html>

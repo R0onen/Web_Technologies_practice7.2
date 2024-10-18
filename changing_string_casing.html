@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Greeting Program</title>
+    <script>
+        function greetUser() {
+            // Prompt user to input their name
+            let name = prompt("What is your name?");
+            
+            if (name) {
+                // Convert the name to lowercase
+                name = name.toLowerCase();
+                
+                // Capitalize the first letter
+                let formattedName = name.charAt(0).toUpperCase() + name.slice(1);
+
+                // Show the alert with the formatted name
+                alert("Hello " + formattedName);
+            } else {
+                // If no name is entered, show a default message
+                alert("You didn't enter a name!");
+            }
+        }
+    </script>
+</head>
+<body onload="greetUser()">
+</body>
+</html>
